@@ -1,15 +1,9 @@
 # SOCC
 Desenvolvimento Full Stack - UFG
 
-
-
-
 # Caso de Uso: Manifestar intenção participar de núcleo de conhecimento
 
-### Tela 2 - Manifestar Intenção em Núcleo de Conhecimento - Tela - ![alt text](Tela2-ManInt.png)
-
-
-| Nome do Atributo | Preench. Obrigatório | Preench. Automático | Tipo | Máscara | Observações | Regra de Interface |
+### Tela 2 - Manifestar Intenção em Núcleo de Conhecimento -![alt text](Tela2-ManInt.png)
 
 
 

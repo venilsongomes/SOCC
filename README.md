@@ -1,4 +1,4 @@
-# SOCC
+# SOCC - Sistema de Oferta de Componentes Curriculares 
 Desenvolvimento Full Stack - UFG
 
 # Caso de Uso: Manifestar intenção participar de núcleo de conhecimento

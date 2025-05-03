@@ -3,7 +3,7 @@ Desenvolvimento Full Stack - UFG
 
 # Caso de Uso: Manifestar intenção participar de núcleo de conhecimento
 
-### Tela 2 - Manifestar Intenção em Núcleo de Conhecimento -![alt text](Tela2-ManInt.png)
+### Tela 2 - Manifestar Intenção em Núcleo de Conhecimento ![alt text](Tela2-ManInt.png)
 
 
 

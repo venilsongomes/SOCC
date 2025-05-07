@@ -21,75 +21,85 @@ import jakarta.persistence.OneToOne;
 public class Docente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Integer id; // Id será gerado automaticamente pelo banco de dados
     private String nome;
     private String email;
 
     @OneToOne
-    private AreaConhecimento areaConhecimento;
+    private AreaConhecimento areaConhecimento;// Relacionamento com AreaConhecimento
+
     @ManyToMany
     @JoinTable( name = "nucleo_conhecimento_docente", // Nome da tabela de junção
     joinColumns = @JoinColumn(name = "docente_id"), // Coluna que referencia Docente
     inverseJoinColumns = @JoinColumn(name = "nucleo_conhecimento_id") // Coluna que referencia NucleoConhecimento
     )
-    private List <NucleoConhecimento> nucleoConhecimento;
+    private List <NucleoConhecimento> nucleoConhecimento; // Lista de núcleos de conhecimento que o docente faz parte no maximo 2
     private String telefone;
     private Date ultimoAcesso;
 
-    public Docente() {}
+    public Docente() {
 
-     public Docente(String nome, String email, String telefone, Date ultimoAcesso) {
-        
+    }
+
+    public Docente(String nome, String email, String telefone, Date ultimoAcesso) {
         this.nome = nome;
         this.email = email;
-        
         this.telefone = telefone;
-        this.ultimoAcesso = ultimoAcesso;   
+        this.ultimoAcesso = ultimoAcesso;
+    }
 
-     }
+    public Integer getId() {
+        return id;
+    }
 
-        public String getNome() {
-            return nome;
-        }
-        public void setNome(String nome) {
-            this.nome = nome;
-        }
-        
-        public String getEmail(){
-            return email;
-        }
-        
-        public void setEmail(String email){
-            this.email = email;
-        }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-         
-        public String getTelefone(){
-            return telefone;
-        }
-        public void setTelefone(String telefone){
-            this.telefone = telefone;
-        }
-        public Date getUltimoAcesso(){
-            return ultimoAcesso;
-        }
-        public void setUltimoAcesso(Date ultimoAcesso){
-            this.ultimoAcesso = ultimoAcesso;
-        }
-        public NucleoConhecimento getNucleoConhecimento() {
-            return (NucleoConhecimento) nucleoConhecimento;
-        }
-        public void setNucleoConhecimento(List<NucleoConhecimento> nucleoConhecimento) {
-            this.nucleoConhecimento = nucleoConhecimento;
-        }
+    public String getNome() {
+        return nome;
+    }
 
-        public AreaConhecimento getAreaConhecimento() {
-            return areaConhecimento;
-        }
-        public void setAreaConhecimento(AreaConhecimento areaConhecimento) {
-            this.areaConhecimento = areaConhecimento;
-        }
-  
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
+    public String getEmail() {
+        return email;
+    }
 
-}
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public Date getUltimoAcesso() {
+        return ultimoAcesso;
+    }
+
+    public void setUltimoAcesso(Date ultimoAcesso) {
+        this.ultimoAcesso = ultimoAcesso;
+    }
+
+    public NucleoConhecimento getNucleoConhecimento() {
+        return (NucleoConhecimento) nucleoConhecimento;
+    }
+
+    public void setNucleoConhecimento(List<NucleoConhecimento> nucleoConhecimento) {
+        this.nucleoConhecimento = nucleoConhecimento;
+    }
+
+    public AreaConhecimento getAreaConhecimento() {
+        return areaConhecimento;
+    }
+
+    public void setAreaConhecimento(AreaConhecimento areaConhecimento) {
+        this.areaConhecimento = areaConhecimento;
+    }

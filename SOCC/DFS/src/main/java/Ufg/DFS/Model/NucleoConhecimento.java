@@ -6,9 +6,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 
+import java.util.List;
 
 @Entity
-
 public class NucleoConhecimento {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,12 +17,10 @@ public class NucleoConhecimento {
     @OneToOne
     private ManifestacaoIntencao manifestacaoIntencao;
 
+    private List<Docente> docentes; // Lista de docentes que fazem parte do núcleo de conhecimento
+
     public NucleoConhecimento() {
         super();
-    }
-
-    public NucleoConhecimento(ManifestacaoIntencao manifestacaoIntencao) {
-        this.manifestacaoIntencao = manifestacaoIntencao;
     }
 
     public Integer getId() {
@@ -33,6 +31,10 @@ public class NucleoConhecimento {
         this.id = id;
     }
 
+    public NucleoConhecimento(ManifestacaoIntencao manifestacaoIntencao) {
+        this.manifestacaoIntencao = manifestacaoIntencao;
+    }
+
     public ManifestacaoIntencao getManifestacaoIntencao() {
         return manifestacaoIntencao;
     }
@@ -40,7 +42,4 @@ public class NucleoConhecimento {
     public void setManifestacaoIntencao(ManifestacaoIntencao manifestacaoIntencao) {
         this.manifestacaoIntencao = manifestacaoIntencao;
     }
-    
-  
-    
 }

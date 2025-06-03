@@ -1,26 +1,51 @@
 package Ufg.DFS.Model;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 
-import java.util.List;
 
 @Entity
 public class NucleoConhecimento {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id; // Id será gerado automaticamente pelo banco de dados
+    private Integer id;
+    private String nome;
+    private String descricao;
 
-    @OneToOne
-    private ManifestacaoIntencao manifestacaoIntencao;
-
-    private List<Docente> docentes; // Lista de docentes que fazem parte do núcleo de conhecimento
+    @OneToMany(mappedBy = "nucleoConhecimento")
+    @JsonIgnore
+    private List <ManifestacaoIntencao> manifestacaoIntencao;
 
     public NucleoConhecimento() {
         super();
+    }
+
+    public NucleoConhecimento(String nome, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public Integer getId() {
@@ -31,15 +56,11 @@ public class NucleoConhecimento {
         this.id = id;
     }
 
-    public NucleoConhecimento(ManifestacaoIntencao manifestacaoIntencao) {
-        this.manifestacaoIntencao = manifestacaoIntencao;
-    }
-
-    public ManifestacaoIntencao getManifestacaoIntencao() {
+    public List<ManifestacaoIntencao> getManifestacaoIntencao() {
         return manifestacaoIntencao;
     }
 
-    public void setManifestacaoIntencao(ManifestacaoIntencao manifestacaoIntencao) {
+    public void setManifestacaoIntencao(List <ManifestacaoIntencao> manifestacaoIntencao) {
         this.manifestacaoIntencao = manifestacaoIntencao;
     }
 }

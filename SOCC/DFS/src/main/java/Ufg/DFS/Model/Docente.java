@@ -2,7 +2,7 @@ package Ufg.DFS.Model;
 
 import java.util.Date;
 import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,38 +14,16 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 
-
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)// indica herança de classe
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS) // indica herança de classe
 
 public class Docente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id; // Id será gerado automaticamente pelo banco de dados
-    private String nome;
-    private String email;
-
-    @OneToOne
-    private AreaConhecimento areaConhecimento;// Relacionamento com AreaConhecimento
-
-    @ManyToMany
-    @JoinTable( name = "nucleo_conhecimento_docente", // Nome da tabela de junção
-    joinColumns = @JoinColumn(name = "docente_id"), // Coluna que referencia Docente
-    inverseJoinColumns = @JoinColumn(name = "nucleo_conhecimento_id") // Coluna que referencia NucleoConhecimento
-    )
-    private List <NucleoConhecimento> nucleoConhecimento; // Lista de núcleos de conhecimento que o docente faz parte no maximo 2
-    private String telefone;
-    private Date ultimoAcesso;
+    private Integer id;
 
     public Docente() {
 
-    }
-
-    public Docente(String nome, String email, String telefone, Date ultimoAcesso) {
-        this.nome = nome;
-        this.email = email;
-        this.telefone = telefone;
-        this.ultimoAcesso = ultimoAcesso;
     }
 
     public Integer getId() {
@@ -54,6 +32,43 @@ public class Docente {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    private String nome;
+    private String email;
+
+    @OneToOne(mappedBy = "docente")
+    @JsonBackReference
+    private ManifestacaoIntencao manifestacaoIntencao;
+
+    public ManifestacaoIntencao getManifestacaoIntencao() {
+        return manifestacaoIntencao;
+    }
+
+    public void setManifestacaoIntencao(ManifestacaoIntencao manifestacaoIntencao) {
+        this.manifestacaoIntencao = manifestacaoIntencao;
+    }
+
+    @OneToOne
+    private AreaConhecimento areaConhecimento;
+    @ManyToMany
+    @JoinTable(name = "nucleo_conhecimento_docente", // Nome da tabela de junção
+            joinColumns = @JoinColumn(name = "docente_id"), // Coluna que referencia Docente
+            inverseJoinColumns = @JoinColumn(name = "nucleo_conhecimento_id") // Coluna que referencia
+                                                                              // NucleoConhecimento
+    )
+    private List<NucleoConhecimento> nucleoConhecimento;
+    private String telefone;
+    private Date ultimoAcesso;
+
+    public Docente(String nome, String email, String telefone, Date ultimoAcesso) {
+
+        this.nome = nome;
+        this.email = email;
+
+        this.telefone = telefone;
+        this.ultimoAcesso = ultimoAcesso;
+
     }
 
     public String getNome() {
@@ -103,3 +118,5 @@ public class Docente {
     public void setAreaConhecimento(AreaConhecimento areaConhecimento) {
         this.areaConhecimento = areaConhecimento;
     }
+
+}

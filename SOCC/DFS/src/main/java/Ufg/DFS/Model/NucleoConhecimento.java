@@ -1,12 +1,12 @@
 package Ufg.DFS.Model;
+import java.util.ArrayList;
 import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 
@@ -22,6 +22,20 @@ public class NucleoConhecimento {
     @OneToMany(mappedBy = "nucleoConhecimento")
     @JsonIgnore
     private List <ManifestacaoIntencao> manifestacaoIntencao;
+     
+    @ManyToMany(mappedBy = "nucleoConhecimento")
+    @com.fasterxml.jackson.annotation.JsonBackReference
+        private List<Docente> docentes = new ArrayList<>() ;
+
+
+
+    public List<Docente> getDocentes() {
+        return docentes;
+    }
+
+    public void setDocentes(List<Docente> docentes) {
+        this.docentes = docentes;
+    }
 
     public NucleoConhecimento() {
         super();

@@ -1,4 +1,5 @@
 package Ufg.DFS.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/status")
 public class StatusController {
-     
+     @Autowired
     private final StatusService services;
 
     public StatusController (StatusService services){

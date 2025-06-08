@@ -1,5 +1,6 @@
 package Ufg.DFS.Model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -35,8 +36,10 @@ public class Docente {
     @ManyToMany
     @JoinTable(name = "nucleo_conhecimento_docente",
             joinColumns = @JoinColumn(name = "docente_id"),
-            inverseJoinColumns = @JoinColumn(name = "nucleo_conhecimento_id"))
-    private List<NucleoConhecimento> nucleoConhecimento;
+            inverseJoinColumns = @JoinColumn(name = "nucleo_conhecimento_id")
+            )
+            @com.fasterxml.jackson.annotation.JsonManagedReference
+            private List<NucleoConhecimento> nucleoConhecimento = new ArrayList<>();
 
     private String telefone;
     private Date ultimoAcesso;
@@ -75,9 +78,9 @@ public class Docente {
         this.areaConhecimento = areaConhecimento;
     }
 
-    public NucleoConhecimento getNucleoConhecimento() {
-        return (NucleoConhecimento) nucleoConhecimento;
-    }
+    public List<NucleoConhecimento> getNucleoConhecimento() {
+    return nucleoConhecimento;
+}
 
     public void setNucleoConhecimento(List<NucleoConhecimento> nucleoConhecimento) {
         this.nucleoConhecimento = nucleoConhecimento;
